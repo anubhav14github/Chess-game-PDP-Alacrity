@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'rating',
     ];
 
     /**
@@ -45,4 +46,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+        // Define the games where the user is the white player
+        public function gamesAsWhite()
+        {
+            return $this->hasMany(Game::class, 'player_white_id');
+        }
+    
+        // Define the games where the user is the black player
+        public function gamesAsBlack()
+        {
+            return $this->hasMany(Game::class, 'player_black_id');
+        }
 }

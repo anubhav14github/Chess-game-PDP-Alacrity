@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Player;
 use App\Models\Tournament;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -28,8 +29,8 @@ class GameFactory extends Factory
         return [
             //
             'pgn' => $this->faker->randomElement($pgnSamples),
-            'player_white_id' => Player::factory(),                        
-            'player_black_id' => Player::factory(),                       
+            'player_white_id' => User::factory(),                        
+            'player_black_id' => User::factory(),                       
             'tournament_id' => Tournament::factory(),                      
             'date' => $this->faker->date,
         ];

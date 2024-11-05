@@ -4,6 +4,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TournamentController;
+use App\Http\Controllers\UserController;
 use App\Models\Game;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -12,12 +13,12 @@ use Inertia\Inertia;
 //games
 Route::get('/games', [GameController::class, 'index'])->name('games.index');
 
-//players
-Route::get('/players', [PlayerController::class, 'index']);
-Route::get('/players/{id}', [PlayerController::class, 'show']);
-Route::post('/players', [PlayerController::class, 'store']);
-Route::put('/players/{id}', [PlayerController::class, 'update']);
-Route::delete('/players/{id}', [PlayerController::class, 'destroy']);
+// Users routes 
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+Route::post('/users', [UserController::class, 'store']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 //tournaments
 Route::get('/tournaments', [TournamentController::class, 'index']);

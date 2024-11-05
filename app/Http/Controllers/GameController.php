@@ -15,19 +15,17 @@ class GameController extends Controller
 
         $query = Game::with(['playerWhite', 'playerBlack', 'tournament']);
 
+        // Use the defined scopes if filters are present in the request
         if ($request->has('player_id')) {
-            $query->where(function ($q) use ($request) {
-                $q->where('player_white_id', $request->player_id)
-                    ->orWhere('player_black_id', $request->player_id);
-            });
+            $query->byPlayer($request->player_id);
         }
 
         if ($request->has('tournament_id')) {
-            $query->where('tournament_id', $request->tournament_id);
+            $query->byTournament($request->tournament_id);
         }
 
         if ($request->has(['start_date', 'end_date'])) {
-            $query->whereBetween('date', [$request->start_date, $request->end_date]);
+            $query->byDateRange($request->start_date, $request->end_date);
         }
 
         // return response()->json($query->get());
